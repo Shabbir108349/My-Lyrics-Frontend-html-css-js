@@ -293,6 +293,34 @@ body {
   color: white;
   padding: 20px;
   border-radius: 10px;
+  gap: 50px;
+}
+
+.footer h3 {
+  text-align: center;
+  font-size: 26px;
+}
+
+.footer div p {
+  max-width: 700px;
+  font-size: 20px;
+  line-height: 28px;
+  text-align: justify;
+}
+.footer a{
+  color: white;
+}
+
+
+@media (max-width: 1280px) {
+  .footer{
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer div p{
+    max-width: 100%;
+    text-align: center;
+  }
 }
 
 
@@ -341,5 +369,12 @@ body {
 
   .songCard span {
     font-size: 11px;
+  }
+  .footer{
+    flex-direction: column;
+  }
+  .footer div p{
+    font-size: 16px;
+    line-height: 20px;
   }
 }

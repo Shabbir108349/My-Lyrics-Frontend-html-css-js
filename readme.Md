@@ -102,6 +102,7 @@ http://localhost:8080
 - Backend must be running before using Frontend
 - CORS must be enabled in backend
 - Internet required for YouTube video embedding
+- Some demo song already given with the file nameed **song3.json,song1.js,song2.js**
 
 ---
 

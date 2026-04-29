@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Song</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1e1e2f, #2c2c54);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            padding: 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* GRID INPUTS */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        /* INPUTS */
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #6c63ff;
+        }
+
+        /* TEXTAREA */
+        textarea {
+            margin-top: 15px;
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* BUTTON */
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: #6c63ff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #574fd6;
+        }
+
+        /* Toggle container */
+        .toggle-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding: 10px;
+            background: #1e293b;
+            border-radius: 10px;
+            color: #e2e8f0;
+        }
+
+        /* Switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+        }
+
+        /* Hide default checkbox */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* Slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            inset: 0;
+            background-color: #475569;
+            border-radius: 34px;
+            transition: 0.3s;
+        }
+
+        /* Circle */
+        .slider::before {
+            content: "";
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        /* Checked state */
+        .switch input:checked+.slider {
+            background: linear-gradient(135deg, #22c55e, #3b82f6);
+        }
+
+        .switch input:checked+.slider::before {
+            transform: translateX(24px);
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <form class="card" id="uploadForm">
+            <h2>🎵 Edit Song</h2>
+
+            <div class="grid">
+
+                <input type="text" placeholder="Song Title" name="title" required id="title">
+                <input type="text" placeholder="Artist" name="artist" required id="artist">
+
+                <input type="text" placeholder="Composer" name="composer" id="composer">
+                <input type="text" placeholder="Lyricist" name="lyricist" id="lyricist">
+
+                <input type="text" placeholder="Genre (e.g. Gozol,Song,Nasheed,Geet)" name="genre" id="genre">
+                <input type="text" placeholder="Language (e.g. Bangla, Hindi)" name="language" id="language">
+
+                <input type="text" placeholder="Label" name="label" id="label">
+                <input type="text" placeholder="YouTube Video ID" name="videoId" id="videoId">
+            </div>
+
+            <textarea placeholder="Paste full lyrics here..." name="lyrics" required id="lyrics"></textarea>
+            <div class="toggle-container">
+                <label for="isPopular">⭐ Mark as Popular</label>
+
+                <label class="switch">
+                    <input type="checkbox" id="isPopular" name="isPopular">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <button type="submit">🚀 Update</button>
+
+        </form>
+
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const songId = params.get("id");
+
+        async function loadSong() {
+            try {
+                const res = await fetch(`http://192.168.0.121:8080/api/get-song-by-id/${songId}`);
+                const data = await res.json();
+               
+                document.querySelector('[name="title"]').value = data.title;
+                document.querySelector('[name="artist"]').value = data.artist;
+                document.querySelector('[name="composer"]').value = data.composer;
+                document.querySelector('[name="lyricist"]').value = data.lyricist;
+                document.querySelector('[name="genre"]').value = data.genre;
+                document.querySelector('[name="language"]').value = data.language;
+                document.querySelector('[name="label"]').value = data.label;
+                document.querySelector('[name="videoId"]').value = data.videoId;
+                document.querySelector('[name="lyrics"]').value = data.lyrics;
+
+                // ✅ checkbox
+                document.querySelector('[name="isPopular"]').checked = data.isPopular;
+
+            } catch (err) {
+                console.error(err);
+                alert("❌ Failed to load song");
+            }
+        }
+
+        loadSong();
+
+        document.getElementById("uploadForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+
+            data.isPopular = formData.get("isPopular") === "on";
+
+            console.log(data);
+
+            try {
+                const res = await fetch(`http://192.168.0.121:8080/api/shabbir/update-song-by-id/${songId}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (res.ok) {
+                    alert("✅ Song updated successfully!");
+                } else {
+                    alert("❌ Update failed");
+                }
+
+            } catch (err) {
+                console.error(err);
+                alert("⚠️ Server error");
+            }
+        });
+    </script>
+</body>
+
+</html>

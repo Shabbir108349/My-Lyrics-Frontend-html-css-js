@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Lyrics</title>
+  <link rel="stylesheet" href="landing.css">
+</head>
+
+<body>
+
+  <header class="navbar">
+
+    <div class="logo">
+      ▶ My Lyrics
+    </div>
+    
+    <div class="search-wrapper">
+      <input type="text" placeholder="Search..." class="search-box" id="songInput">
+      <div id="suggestions" class="suggestions"></div>
+      <svg class="searchsvg" id="serach-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+        stroke-width="2.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+      </svg>
+    </div>
+
+
+    <button id="themeToggle" class="theme-btn">🌙</button>
+
+  </header>
+
+  <!-- 🔥 DRAWER -->
+  <div class="drawer" id="drawer">
+    <h2>🎵 My Lyrics</h2>
+    <a href="#">Home</a>
+    <a href="../login.html?id=admin">Admin</a>
+    <a href="../login.html?id=upload">Upload</a>
+    <a href="../login.html?id=editor">Editor</a>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main">
+
+    <!-- HERO -->
+    <section class="hero">
+      <h1>Feel the Music, Read the Lyrics</h1>
+      <p>"Where words meet melody, emotions come alive."</p>
+    </section>
+
+    <!-- SAMPLE SONGS -->
+    <section class="songs">
+
+      <div style="position: relative;">
+        <h2 class="H2">🔥Popular</h2>
+        <div class="songList" id="popular">
+          <!-- dynamic Song -->
+        </div>
+        <div style="text-align:right; margin:10px 5px;">
+          <button class="moreBtn absolute" id="popularbtn">View All ➜</button>
+        </div>
+
+      </div>
+
+
+      <h2 class="H2">🔥Bangla Movie</h2>
+      <div style="position: relative;">
+        <div class="songList" id="banglamovie">
+          <!-- dynamic Song -->
+        </div>
+        <div style="text-align:right; margin:10px 5px;">
+          <button class="moreBtn absolute" id="banglamoviebtn">View All ➜</button>
+        </div>
+
+      </div>
+
+
+      <h2 class="H2">🔥Bangla Folk</h2>
+      <div style="position: relative;">
+        <div class="songList" id="banglafolk">
+          <!-- dynamic Song -->
+        </div>
+        <div style="text-align:right; margin:10px 5px;">
+          <button class="moreBtn absolute" id="banglafolkbtn">View All ➜</button>
+        </div>
+
+      </div>
+
+      <h2 class="H2">🔥Bangla Album</h2>
+      <div style="position: relative;">
+        <div class="songList" id="banglaalbum">
+          <!-- dynamic Song -->
+        </div>
+        <div style="text-align:right; margin:10px 5px;">
+          <button class="moreBtn absolute" id="banglaalbumbtn">View All ➜</button>
+        </div>
+
+      </div>
+
+      <h2 class="H2">🔥English</h2>
+      <div style="position: relative;">
+        <div class="songList" id="english">
+          <!-- dynamic Song -->
+        </div>
+        <div style="text-align:right; margin:10px 5px;">
+          <button class="moreBtn absolute" id="englishbtn">View All ➜</button>
+        </div>
+
+      </div>
+
+
+      <h2 class="H2">🔥Hindi Movie</h2>
+      <div style="position: relative;">
+        <div class="songList" id="hindimovie">
+          <!-- dynamic Song -->
+        </div>
+        <div style="text-align:right; margin:10px 5px;">
+          <button class="moreBtn absolute" id="hindimoviebtn">View All ➜</button>
+        </div>
+
+      </div>
+
+      <h2 class="H2">🔥Hindi Album</h2>
+      <div style="position: relative;">
+        <div class="songList" id="hindialbum">
+          <!-- dynamic Song -->
+        </div>
+        <div style="text-align:right; margin:10px 5px;">
+          <button class="moreBtn absolute" id="hindialbumbtn">View All ➜</button>
+        </div>
+
+      </div>
+
+      <h2 class="H2">🔥Nasheed</h2>
+      <div style="position: relative;">
+        <div class="songList" id="nasheed">
+          <!-- dynamic Song -->
+        </div>
+        <div style="text-align:right; margin:10px 5px;">
+          <button class="moreBtn absolute" id="nasheedbtn">View All ➜</button>
+        </div>
+
+      </div>
+
+      <h2 class="H2">🔥Bangla Gozol</h2>
+      <div style="position: relative;">
+        <div class="songList" id="banglagozol">
+          <!-- dynamic Song -->
+        </div>
+        <div style="text-align:right; margin:10px 5px;">
+          <button class="moreBtn absolute " id="banglagozolbtn">View All ➜</button>
+        </div>
+
+      </div>
+
+      <h2 class="H2">🔥Urdu Drama</h2>
+      <div style="position: relative;">
+        <div class="songList" id="urdudrama">
+          <!-- dynamic Song -->
+        </div>
+        <div style="text-align:right; margin:10px 5px;">
+          <button class="moreBtn absolute" id="urdudramabtn">View All ➜</button>
+        </div>
+
+      </div>
+
+      <h2 class="H2">🔥Bangla Geet</h2>
+      <div style="position: relative;">
+        <div class="songList" id="banglageet">
+          <!-- dynamic Song -->
+        </div>
+        <div style="text-align:right; margin:10px 5px;">
+          <button class="moreBtn absolute" id="banglageetbtn">View All ➜</button>
+        </div>
+
+      </div>
+
+
+
+    </section>
+
+
+
+    <!-- QUOTE -->
+    <section class="quote">
+      <p>🎶 “Music gives a soul to the universe, wings to the mind, and life to everything.”</p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div>
+        <h3>About Me</h3>
+        <p>I’m building a lyrics platform for music lovers ❤️</p>
+      </div>
+
+      <div>
+        <h3>Contact</h3>
+        <p>Email: your@email.com</p>
+        <p>GitHub: github.com/yourname</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="landing.js"></script>
+</body>
+
+</html>

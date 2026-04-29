@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Songs</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+
+    :root{
+      --bg:#0f172a;
+      --text:#e2e8f0;
+      --card:#1e293b;
+      --border:#334155;
+      --primary:#22c55e;
+    }
+
+    .dark-mode{
+      --bg:#020617;
+      --text:#f1f5f9;
+      --card:#0f172a;
+      --border:#1e293b;
+    }
+
+    body{background:var(--bg);color:var(--text);transition:.3s}
+
+    .navbar{
+      height:60px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:0 15px;
+      border-bottom:1px solid var(--border);
+      position:sticky;
+      top:0;
+      background:rgba(15,23,42,.8);
+      backdrop-filter:blur(10px);
+      z-index:100;
+    }
+
+    .logo{color:var(--primary);font-weight:bold}
+
+    .search-box{
+      flex:1;
+      padding:8px 12px;
+      border:1px solid var(--border);
+      border-radius:20px;
+      background:transparent;
+      color:var(--text);
+    }
+
+    .theme-btn{
+      border:1px solid var(--border);
+      background:transparent;
+      color:var(--text);
+      padding:5px 10px;
+      border-radius:6px;
+      cursor:pointer;
+    }
+
+    .container{padding:20px}
+
+    .songGrid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(270px,1fr));
+      gap:10px;
+    }
+
+    .songCard{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      overflow:hidden;
+      transition:.3s;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .songCard:hover{transform:translateY(-5px)}
+
+    .songThumb{width:100%;height:150px;object-fit:cover}
+
+    .content{padding:10px;text-align:center}
+
+    .actions{
+      display:flex;
+      justify-content:space-around;
+      padding:10px;
+      border-top:1px solid var(--border);
+    }
+
+    .btn{
+      padding:6px 12px;
+      border:none;
+      border-radius:6px;
+      cursor:pointer;
+    }
+
+    .edit{background:#3b82f6;color:#fff}
+    .delete{background:#ef4444;color:#fff}
+
+    @media(max-width:768px){
+      .songGrid{grid-template-columns:1fr}
+
+      .songCard{flex-direction:row;height:90px}
+
+      .songThumb{width:120px;height:100%}
+
+      .content{text-align:left}
+
+      .actions{flex-direction:column;gap:5px}
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">▶ Manage Songs</div>
+  <input type="text" id="searchInput" class="search-box" placeholder="Search songs...">
+  <button id="themeToggle" class="theme-btn">🌙</button>
+</header>
+
+<div class="container">
+  <div id="songGrid" class="songGrid"></div>
+</div>
+
+<script>
+const songGrid = document.getElementById("songGrid");
+const searchInput = document.getElementById("searchInput");
+let allSongs = [];
+
+// 🌙 Dark mode
+document.getElementById("themeToggle").onclick = ()=>{
+  document.body.classList.toggle("dark-mode");
+}
+
+// 🔄 Fetch all songs
+async function fetchSongs(){
+  const res = await fetch("http://192.168.0.121:8080/api/shabbir/get-all-song");
+  const data = await res.json();
+  allSongs = Array.isArray(data)?data:data.data;
+  renderSongs(allSongs);
+}
+
+fetchSongs();
+
+// 🔍 Search
+searchInput.addEventListener("input",()=>{
+  const val = searchInput.value.toLowerCase();
+
+  const filtered = allSongs.filter(song=>
+    song.title.toLowerCase().includes(val) ||
+    song.artist.toLowerCase().includes(val)
+  );
+
+  renderSongs(filtered);
+});
+
+// 🎵 Render
+function renderSongs(songs){
+  songGrid.innerHTML="";
+
+  if(!songs.length){
+    songGrid.innerHTML="<h3 style='text-align:center'>No songs found 😢</h3>";
+    return;
+  }
+
+  songs.forEach(song=>{
+    const div = document.createElement("div");
+    div.className="songCard";
+
+    const thumb = `https://img.youtube.com/vi/${song.videoId}/hqdefault.jpg`;
+
+    div.innerHTML = `
+      <img class="songThumb" src="${thumb}">
+      <div class="content">
+        <h3>${song.title}</h3>
+        <p>${song.artist}</p>
+      </div>
+      <div class="actions">
+        <button class="btn edit">Edit</button>
+        <button class="btn delete">Delete</button>
+      </div>
+    `;
+
+    // ✏️ Edit
+    div.querySelector(".edit").onclick = ()=>{
+      window.location.href = `adminEditSong.html?id=${song.songId}`;
+    }
+
+    // ❌ Delete
+    div.querySelector(".delete").onclick = async ()=>{
+      if(confirm("Delete this song?")){
+        await fetch(`http://localhost:8080/api/shabbir/delete-song/${song.songId}`,{
+          method:"DELETE"
+        });
+        fetchSongs();
+      }
+    }
+
+    songGrid.appendChild(div);
+  });
+}
+</script>
+
+</body>
+</html>

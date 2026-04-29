@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse Songs</title>
+  <link rel="stylesheet" href="list.css">
+</head>
+
+<body>
+
+  <header class="navbar">
+
+    <div class="logo">
+      ▶ My Lyrics
+    </div>
+    <div>
+      <svg class="searchsvg" id="serach-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+        stroke-width="2.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+      </svg>
+    </div>
+    <input type="text" placeholder="Search..." class="search-box" id="songInput">
+
+
+    <button id="themeToggle" class="theme-btn">🌙</button>
+
+  </header>
+
+  <!-- MAIN -->
+  <div class="container">
+
+    <h2 id="h2">🎵 Browse Songs</h2>
+
+    <div id="songGrid" class="songGrid">
+      <!-- dynamic songs -->
+    </div>
+
+  </div>
+
+  <script src="list.js"></script>
+</body>
+
+</html>

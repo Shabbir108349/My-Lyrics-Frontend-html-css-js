@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Song</title>
+  <link rel="stylesheet" href="upload.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <form class="card" id="uploadForm">
+      <h2>🎵 Upload Song</h2>
+
+      <div class="grid">
+
+        <input type="text" placeholder="Song Title" name="title" required id="title">
+        <input type="text" placeholder="Artist" name="artist" required id="artist">
+
+        <input type="text" placeholder="Composer" name="composer" id="composer">
+        <input type="text" placeholder="Lyricist" name="lyricist" id="lyricist">
+
+        <input type="text" placeholder="Genre (e.g. Gozol,Song,Nasheed,Geet)" name="genre" id="genre">
+        <input type="text" placeholder="Language (e.g. Bangla, Hindi)" name="language" id="language">
+
+        <input type="text" placeholder="Label" name="label" id="label">
+        <input type="text" placeholder="YouTube Video ID" name="videoId" id="videoId">
+      </div>
+
+      <textarea placeholder="Paste full lyrics here..." name="lyrics" required id="lyrics"></textarea>
+      <div class="toggle-container">
+        <label for="isPopular">⭐ Mark as Popular</label>
+
+        <label class="switch">
+          <input type="checkbox" id="isPopular" name="isPopular">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <button type="submit">🚀 Upload</button>
+
+    </form>
+
+  </div>
+
+  <script src="upload.js"></script>
+</body>
+
+</html>

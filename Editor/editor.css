@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    background: #1e1e2f;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(0, 0, 0);
+  }
+
+  .editor-container {
+    display: flex;
+    height: 100vh;
+    border: 1px solid #333;
+  }
+
+  .line-numbers {
+    background: #2a2a40;
+    padding: 10px;
+    text-align: right;
+    user-select: none;
+    color: #c2baba;
+    font-size: 20px;
+  }
+
+  .line-numbers div {
+    height: 25px;
+  }
+
+  textarea {
+    flex: 1;
+    background: #1e1e2f;
+    color: #00ffcc;
+    border: none;
+    outline: none;
+    resize: none;
+    padding: 10px;
+    font-size: 20px;
+    line-height: 25px;
+    caret-color: white;
+  }
+
+  .top-bar {
+    background: #151522;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+  }

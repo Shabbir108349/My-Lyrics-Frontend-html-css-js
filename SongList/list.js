@@ -17,9 +17,9 @@ document.getElementById("themeToggle").addEventListener("click", () => {
 async function fetchSongs(genre) {
   let res;
   if(genre === "Popular"){
-    res = await fetch("http://192.168.0.121:8080/api/v2/song/list/popular")
+    res = await fetch(`https://my-lyrics-backend-node-js.vercel.app/api/v2/song/list/popular/${true}`)
   }else{
-    res = await fetch(`http://192.168.0.121:8080/api/v2/song/list/${genre}`);
+    res = await fetch(`https://my-lyrics-backend-node-js.vercel.app/api/v2/song/list/${genre}`);
   }
   
   const data = await res.json();

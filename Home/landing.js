@@ -16,7 +16,7 @@ searchInput.addEventListener("input", () => {
       return;
     }
 
-    const res = await fetch(`http://192.168.0.121:8080/api/search?query=${query}`);
+    const res = await fetch(`https://my-lyrics-backend-node-js.vercel.app/api/search?query=${query}`);
     const data = await res.json();
     console.log(data);
 
@@ -116,15 +116,15 @@ document.getElementById("themeToggle").addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 });
 
-async function getPopularSong(genre) {
-  const res = await fetch(`http://192.168.0.121:8080/api/v2/song/home/popular`);
+async function getPopularSong(genre,bool) {
+  const res = await fetch(`https://my-lyrics-backend-node-js.vercel.app/api/v2/song/home/popular/${bool}`);
   const data = await res.json();
   viewRender(data, genre.toLowerCase());
 
 }
 
 async function getFiveSpecificSong(genre) {
-  const res = await fetch(`http://192.168.0.121:8080/api/v2/song/home/${genre}`);
+  const res = await fetch(`https://my-lyrics-backend-node-js.vercel.app/api/v2/song/home/${genre}`);
   const data = await res.json();
   const placeHolder= genre.replace(' ',"").toLowerCase();
   viewRender(data, placeHolder);
@@ -160,7 +160,7 @@ function viewRender(data, place) {
 
 }
 
-getPopularSong("Popular");
+getPopularSong("Popular",true);
 getFiveSpecificSong("Bangla Movie");
 getFiveSpecificSong("Bangla Folk");
 getFiveSpecificSong("Bangla Album");

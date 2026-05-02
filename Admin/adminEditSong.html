@@ -198,7 +198,7 @@
 
         async function loadSong() {
             try {
-                const res = await fetch(`http://192.168.0.121:8080/api/get-song-by-id/${songId}`);
+                const res = await fetch(`https://my-lyrics-backend-node-js.vercel.app/api/get-song-by-id/${songId}`);
                 const data = await res.json();
                
                 document.querySelector('[name="title"]').value = data.title;
@@ -233,7 +233,7 @@
             console.log(data);
 
             try {
-                const res = await fetch(`http://192.168.0.121:8080/api/shabbir/update-song-by-id/${songId}`, {
+                const res = await fetch(`https://my-lyrics-backend-node-js.vercel.app/api/shabbir/update-song-by-id/${songId}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json"

@@ -136,7 +136,7 @@ document.getElementById("themeToggle").onclick = ()=>{
 
 // 🔄 Fetch all songs
 async function fetchSongs(){
-  const res = await fetch("http://192.168.0.121:8080/api/shabbir/get-all-song");
+  const res = await fetch("https://my-lyrics-backend-node-js.vercel.app/api/shabbir/get-all-song");
   const data = await res.json();
   allSongs = Array.isArray(data)?data:data.data;
   renderSongs(allSongs);
@@ -191,7 +191,7 @@ function renderSongs(songs){
     // ❌ Delete
     div.querySelector(".delete").onclick = async ()=>{
       if(confirm("Delete this song?")){
-        await fetch(`http://localhost:8080/api/shabbir/delete-song/${song.songId}`,{
+        await fetch(`https://my-lyrics-backend-node-js.vercel.app/api/shabbir/delete-song/${song.songId}`,{
           method:"DELETE"
         });
         fetchSongs();

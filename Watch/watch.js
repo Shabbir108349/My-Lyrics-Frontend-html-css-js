@@ -26,7 +26,7 @@ toggleBtn.addEventListener("click", () => {
 
 async function searchSong(id) {
   
-    const res = await fetch(`http://192.168.0.121:8080/api/get-song-by-id/${id}`);
+    const res = await fetch(`https://my-lyrics-backend-node-js.vercel.app/api/get-song-by-id/${id}`);
     const data = await res.json();
    
     if (data) {
@@ -49,7 +49,7 @@ async function searchSong(id) {
 searchSong(songId);
 
 async function recommendSong(genre,id) {
-    const res = await fetch(`http://192.168.0.121:8080/api/v2/get-recommend-song/${genre}/${id}`)
+    const res = await fetch(`https://my-lyrics-backend-node-js.vercel.app/api/v2/get-recommend-song/${genre}/${id}`)
 
     const data = await res.json();
     data.forEach(song => {

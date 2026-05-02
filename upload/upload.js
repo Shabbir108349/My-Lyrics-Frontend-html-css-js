@@ -10,7 +10,7 @@ document.getElementById("uploadForm").addEventListener("submit", async (e) => {
   console.log("Sending data:", data);
 
   try {
-    const res = await fetch("http://192.168.0.121:8080/api/shabbir/add-song", {
+    const res = await fetch("https://my-lyrics-backend-node-js.vercel.app/api/shabbir/add-song", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

@@ -50,23 +50,26 @@ async function searchSong(id) {
 searchSong(songId);
 
 async function recommendSong(genre,id) {
-    const res = await fetch(`https://my-lyrics-backend-node-js.vercel.app/api/v2/get-recommend-song/${genre}/${id}`)
+    const res = await fetch(`https://my-lyrics-backend-node-js.vercel.app/api/get-recommend-song/${genre}/${id}`)
 
     const data = await res.json();
     data.forEach(song => {
-        addSong(song.title,song.videoId,song.songId);
+        addSong(song.title,song.videoId,song.songId,song.artist);
     });
 }
 
 
-function addSong(title, videoId,songId) {
+function addSong(title, videoId,songId,artist) {
     const thumb = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
     const div = document.createElement("div");
     div.className = "songItem";
 
     div.innerHTML = `
     <img class="songThumb" src="${thumb}">
-    <div class="songTitle">${title}</div>
+    <div>
+        <h3>${title}</h3>
+        <p> Artist: ${artist}</p>
+      </div>
   `;
 
     div.onclick = ()=>{

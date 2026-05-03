@@ -77,7 +77,7 @@ function renderSongs(songs) {
     `;
 
     div.onclick = () => {
-      window.location.href = `../Watch/watch.html?id=${song.songId}`;
+      window.location.href = `https://lyrics-bangla-geet.netlify.app/Watch/watch.html?id=${song.songId}`;
     };
 
     songGrid.appendChild(div);

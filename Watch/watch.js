@@ -73,7 +73,7 @@ function addSong(title, videoId,songId,artist) {
   `;
 
     div.onclick = ()=>{
-        window.location.href = `https://lyrics-bangla-geet.netlify.app/watch.html?id=${songId}`
+        window.location.href = `https://lyrics-bangla-geet.netlify.app/Watch/watch.html?id=${songId}`
     }
 
     container.appendChild(div);

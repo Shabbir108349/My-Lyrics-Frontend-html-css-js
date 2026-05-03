@@ -44,7 +44,7 @@ function renderSuggestions(songs) {
 
     // 🔥 CLICK → GO TO SEARCH PAGE
     div.onclick = () => {
-      window.location.href = `../Watch/watch.html?id=${encodeURIComponent(song.songId)}`;
+      window.location.href = `https://lyrics-bangla-geet.netlify.app/Watch/watch.html?id=${encodeURIComponent(song.songId)}`;
     };
 
     suggestionBox.appendChild(div);

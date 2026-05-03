@@ -103,7 +103,7 @@ banglageetbtn.addEventListener('click',()=>{
 
 
 function globalListPage(genre){
-  window.location.href=`../songList/list.html?id=${genre}`
+  window.location.href=`https://lyrics-bangla-geet.netlify.app/songList/list.html?id=${genre}`
 }
 
 myLyrics.addEventListener('click', toggleDrawer);
@@ -151,7 +151,7 @@ function viewRender(data, place) {
   `;
 
     div.onclick = () => {
-      window.location.href = `../Watch/watch.html?id=${song.songId}`;
+      window.location.href = `https://lyrics-bangla-geet.netlify.app/Watch/watch.html?id=${song.songId}`;
     }
 
     container.appendChild(div);

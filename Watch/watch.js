@@ -73,7 +73,7 @@ function addSong(title, videoId,songId,artist) {
   `;
 
     div.onclick = ()=>{
-        window.location.href = `index.html?id=${songId}`
+        window.location.href = `watch.html?id=${songId}`
     }
 
     container.appendChild(div);

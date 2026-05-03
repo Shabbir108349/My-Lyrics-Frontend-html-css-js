@@ -15,6 +15,7 @@ document.getElementById("themeToggle").addEventListener("click", () => {
 
 // 🔄 Fetch songs
 async function fetchSongs(genre) {
+  document.title = genre +" Songs";
   let res;
   if(genre === "Popular"){
     res = await fetch(`https://my-lyrics-backend-node-js.vercel.app/api/v2/song/list/popular/${true}`)

@@ -33,6 +33,7 @@ async function searchSong(id) {
         songName.style.display = "block";
         lyricsBox.style.display = "block";
         songName.innerText = data.title;
+        document.title = "Lyrics- "+data.title;
         const l = data.lyrics.replaceAll("\\n", "\n");
         lyricsBox.innerHTML = l;
         const link = `https://www.youtube.com/embed/${data.videoId}`;
